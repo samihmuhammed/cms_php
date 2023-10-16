@@ -14,12 +14,13 @@
             <div class="col-md-8">
                 <?php
                 
-                if(isset($_GET['p_id'])){
+                if(isset($_GET['p_id_post'])){
 
-                    $the_post_id=$_GET['p_id'];
+                    $the_post_id=$_GET['p_id_post'];
                 }
                 ?>
 
+                
                 <h1 class="page-header">
                     Page Heading
                     <small>Secondary Text</small>
@@ -37,7 +38,7 @@
                 }
 
                 while($row=mysqli_fetch_assoc($query_show_all_posts)){
-                    $post_id=$row['post_id'];
+                     $post_id_determain=$row['post_id'];
                     $post_title=$row['post_title'];
                     $post_author=$row['post_author'];
                     $post_date=$row['post_date'];
@@ -49,7 +50,7 @@
                 ?>
                 <!-- First Blog Post -->
                 <h2>
-                    <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                    <a href="post.php?p_id_post=<?php echo $post_id_determain; ?>"><?php echo $post_title; ?></a>
                 </h2>
                 <p class="lead">
                     by <a href="index.php"><?php echo $post_author; ?></a>
@@ -70,21 +71,39 @@
                 <!-- Comments Form -->
                 <div class="well">
                     <?php
+
+                   
                     // QUERY ADDING COMMENT SECTION
                     if(isset($_POST['add_comment'])){
 
+                        
                         $comment_author=$_POST['comment_author'];
                         $comment_email=$_POST['comment_email'];
                         $comment_content=$_POST['comment_content'];
                         $comment_date=date('d-m-y');
-                        $comment_status="unprove";
-                        $comment_post_id=$the_post_id;
-                        $query="INSERT INTO comments (comment_author,comment_email,comment_content,comment_date,comment_status,comment_post_id) ";
-                        $query.=" VALUES('$comment_author','$comment_email','$comment_content','$comment_date','$comment_status','$comment_post_id')";
-                        $query_insert=mysqli_query($con,$query);
-                        if(!$query_insert){
-                                die("QUERY FAILD".mysqli_error($con));
+                       
+                    
+                       
+                        $query_comment="INSERT INTO comments (comment_post_id,comment_author,comment_email,comment_content,comment_status,comment_date) ";
+                        $query_comment.="VALUES('$post_id_determain','$comment_author','$comment_email','$comment_content','unprove',now()) ";
+                        $query_comment_ex=mysqli_query($con,$query_comment);
+                        if(!$query_comment_ex){
+                            echo "mot execute";
                         }
+                      // section return the id detrmain
+                        // $query_select="SELECT * FROM posts WHERE post_id='{$the_post_id}'";
+                        // $query_post_select_ex=mysqli_query($con,$query_select);
+                        // while($row=mysqli_fetch_assoc($query_post_select_ex)){
+                        //     $post_id_detrmain=$row['post_id'];
+                        // }
+                        // $query="INSERT INTO comments (comment_author,comment_email,comment_content,comment_date,comment_status) ";
+                        // $query.=" VALUES ('$comment_author','$comment_email','$comment_content','$comment_date','$comment_status')";
+                        
+                        // $query_insert=mysqli_query($con,$query);
+                        // if(!$query_insert){
+                            
+                        //         die("QUERY FAILD".mysqli_error($con));
+                        // }
                         
                     }
                     
