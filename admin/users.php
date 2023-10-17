@@ -32,6 +32,7 @@
                        }
                        switch($source){
                         case 100:echo "nononwelcoem";break;
+                        case 'edit_users':include "includes/edit_users.php";break;
                         case 'add_users':include "includes/add_users.php";break;
                         default:include "includes/view_users.php";break;
                        }

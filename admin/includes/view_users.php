@@ -55,8 +55,8 @@
         echo "<th><img width='100' src='../images/$user_image' alt=''></th>";
         echo "<th>$user_role</th>";
         echo "<th>$user_date</th>";
-        echo "<th><a href='posts.php?source=edit_posts&post_id_edit=$user_id'>edit<a/></th>";
-        echo "<th><a href='posts.php?delet=$user_id'>Delete<a/></th>";
+        echo "<th><a href='users.php?source=edit_users&user_id_edit=$user_id'>edit<a/></th>";
+        echo "<th><a href='users.php?delet=$user_id'>Delete<a/></th>";
         echo "</tr>";
     }
     
@@ -65,12 +65,12 @@
             <?php
             if(isset($_GET['delet'])){
                 $the_delet_id=$_GET['delet'];
-                $query="DELETE FROM posts WHERE post_id='$the_delet_id'";
-                $query_delet_post=mysqli_query($con,$query);
-                if($query_delet_post){
+                $query="DELETE FROM users WHERE user_id='$the_delet_id'";
+                $query_delet_user=mysqli_query($con,$query);
+                if($query_delet_user){
                     echo "not delet";
                 }
-                header("Location:posts.php");
+                header("Location:users.php");
             }
             
             
