@@ -129,20 +129,31 @@
                 <hr>
 
                 <!-- Posted Comments -->
-
+                    <!-- UERY SHOW ALL COMMENTS RELATED THAT POST WE POSTED IN THE LIST  -->
                 <!-- Comment -->
+                <!-- QUERY SELCT COMMENTS -->
+                <?php
+                
+                $query="SELECT * FROM comments WHERE comment_post_id='$the_post_id' AND comment_status='aprove'";
+                $query_comments_find=mysqli_query($con,$query);
+                while($row=mysqli_fetch_assoc($query_comments_find)){
+                    $commnet_author_db=$row['comment_author'];
+                    $commnet_content_db=$row['comment_content'];
+                    $commnet_date_db=$row['comment_date'];
+                
+                ?>
                 <div class="media">
                     <a class="pull-left" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
+                        <h4 class="media-heading"><?php echo $commnet_author_db; ?>
+                            <small><?php echo $commnet_date_db; ?></small>
                         </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <?php echo $commnet_content_db; ?>
                     </div>
                 </div>
-
+                    <?php } ?>
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="previous">
