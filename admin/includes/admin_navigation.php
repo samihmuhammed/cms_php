@@ -56,10 +56,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> user <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">view all users</a>
+                                <a href="./users.php?user_source=view_users">view all users</a>
                             </li>
                             <li>
-                                <a href="#">add users</a>
+                                <a href="./users.php?user_source=add_users">add users</a>
                             </li>
                         </ul>
                     </li>
