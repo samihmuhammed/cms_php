@@ -31,7 +31,7 @@ if(isset($_POST['update_user'])){
     $query.=" user_image='$user_image' , ";
     $query.=" user_role='$user_role' , ";
     $query.=" user_date=now() WHERE user_id='$the_user_edit_id' ";
-    // $query.=" ";
+  
   
 
     $query_update_user=mysqli_query($con,$query);

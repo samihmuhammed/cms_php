@@ -41,7 +41,7 @@
                 <input placeholder="paswword" type="password" class="form-control" name="password">
                 
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit" name="search">
+                    <button class="btn btn-default" type="submit" name="login">
                         <span >login</span>
                 </button>
                 
