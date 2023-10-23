@@ -1,4 +1,7 @@
-<div class="well">
+                    <div class="well">
+
+
+                        
                     <h4>Blog Categories</h4>
                     <div class="row">
                         <div class="col-lg-12">
