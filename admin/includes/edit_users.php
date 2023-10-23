@@ -38,6 +38,7 @@ if(isset($_POST['update_user'])){
     if(!$query_update_user){
         die("Error query".mysqli_error($con));
     }
+    header("Location:./users.php");
 }
 
 ?>

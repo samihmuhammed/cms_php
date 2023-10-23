@@ -26,6 +26,7 @@ if(isset($_POST['add_user'])){
     if(!$quer_insert_user){
         echo "QUERY FAILD";
     }
+    header("Location:./users.php");
 }
 
 ?>
