@@ -55,7 +55,7 @@
         echo "<th><img width='100' src='../images/$user_image' alt=''></th>";
         echo "<th>$user_role</th>";
         echo "<th>$user_date</th>";
-        echo "<th><a href='users.php?source=edit_users&user_id_edit=$user_id'>edit<a/></th>";
+        echo "<th><a href='users.php?user_source=edit_users&user_id_edit=$user_id'>edit<a/></th>";
         echo "<th><a href='users.php?delet=$user_id'>Delete<a/></th>";
         echo "</tr>";
     }
