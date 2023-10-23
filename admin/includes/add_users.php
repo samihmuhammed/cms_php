@@ -1,31 +1,30 @@
 <?php
 
-// catch the date from admin panel adding posts
+// catch the date from admin panel adding user
 
-if(isset($_POST['add_post'])){
+if(isset($_POST['add_user'])){
    
-    $post_catagoris_id=$_POST['post_category'];
-    $post_title=$_POST['post_title'];
-    $post_author=$_POST['post_author'];
-    $post_date=date('d-m-y');
-    $post_image=$_FILES['image']['name'];
-    $post_image_temp=$_FILES['image']['tmp_name'];
-    $post_content=$_POST['post_content'];
-    $post_tags=$_POST['post_tags'];
-    
-    $post_status=$_POST['post_status'];
-    $post_comment_count=4;
+   
+    $username=$_POST['username'];
+    $user_password=$_POST['user_password'];
+    $user_firstname=$_POST['user_firstname'];
+    $user_lastname=$_POST['user_lastname'];
+    $user_email=$_POST['user_email'];
+    $user_image=$_FILES['image']['name'];
+    $user_image_temp=$_FILES['image']['tmp_name'];
+    $user_role=$_POST['user_role'];
+    $user_date=$_POST['user_date'];
 
-    move_uploaded_file($post_image_temp,"../images/$post_image");
+    move_uploaded_file($user_image_temp,"../images/$user_image");
 
     // QUERY INSERT POSST BY ADMIN 
 
-    $query="INSERT INTO posts (post_catagoris_id,post_title,post_author,post_date,post_image,post_content,post_tags,post_status,post_comment_count) ";
-    $query.=" VALUES('$post_catagoris_id','$post_title','$post_author',now(),'$post_image','$post_content','$post_tags','$post_status','$post_comment_count')";
+    $query="INSERT INTO users (username,user_password,user_firstname,user_lastname,user_email,user_image,user_role,user_date) ";
+    $query.=" VALUES('$username','$user_password','$user_firstname','$user_lastname','$user_email','$user_image','$user_role','$user_date')";
 
-    $quer_insert_post=mysqli_query($con,$query);
-    if(!$quer_insert_post){
-        echo "query faild";
+    $quer_insert_user=mysqli_query($con,$query);
+    if(!$quer_insert_user){
+        echo "QUERY FAILD";
     }
 }
 
@@ -34,68 +33,47 @@ if(isset($_POST['add_post'])){
 <div class="col-xs-6">
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="">title</label>
-        <input type="text" name="post_title" class="form-control">
+        <label for="">username</label>
+        <input type="text" name="username" class="form-control">
+    </div>
+   
+    <div class="form-group">
+        <label for="">password</label>
+        <input type="text"  name="user_password" class="form-control">
     </div>
     <div class="form-group">
-    <label for="">post_category</label>
-        <select name="post_category" id="">
-
-        
-        <?php
-        // a QUERY TO SHOW catgeory relationship
-        $query="SELECT * FROM catagories";
-        $queyr_select_category=mysqli_query($con,$query);
-        if(!$queyr_select_category){
-            echo "query faild";
-        }
-        while($row=mysqli_fetch_assoc($queyr_select_category)){
-            $cat_id=$row['cat_id'];
-            $cat_title=$row['cat_title'];
-
-                echo "<option value='$cat_id='>$cat_title</option>";
-        }
-        
-        ?>
-        
-        </select>
-        
-      
-    </div>
-    <div class="form-group">
-        <label for="">author</label>
-        <input type="text"  name="post_author" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="">date</label>
-        <input type="date" name="post_date" class="form-control">
+        <label for="">firstname</label>
+        <input type="text" name="user_firstname" class="form-control">
     </div>
     <div class="form-group">
         <label for="">image</label>
         <input type="file" name="image">
     </div>
     <div class="form-group">
-        <label for="">content</label>
-        <textarea name="post_content" id="" cols="30" rows="10" class="form-control">
-
-        </textarea>
+        <label for="">lastName</label>
+        <input type="text" name="user_lastname">
         
     </div>
     <div class="form-group" >
-        <label for="">tags</label>
+        <label for="">email</label>
         
-        <input type="text" name="post_tags" class="form-control"> 
+        <input type="email" name="user_email" class="form-control"> 
+    </div>
+    <div class="form-group" >
+        <label for="">date</label>
+        
+        <input type="date" name="user_date" class="form-control"> 
     </div>
     <div class="form-group">
         <label for="">status</label>
-        <select name="post_status" id="">
-            <option value="publish">select status</option>
-            <option value="publish">publish</option>
-            <option value="draft">draft</option>
+        <select name="user_role" id="">
+            <option value="admin">select status</option>
+            <option value="admin">admin</option>
+            <option value="subscriber">subscriber</option>
         </select>
         
     </div>
 
-    <input type="submit" name="add_post" value="add post " class="btn btn-primary">
+    <input type="submit" name="add_user" value="add user" class="btn btn-primary">
 </form>
 </div>
